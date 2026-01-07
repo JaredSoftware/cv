@@ -43,16 +43,16 @@
     }
   },
   "experience": {
-    "freelance": {
+    "bercontCurrent": {
       "position": "Full Stack Developer",
-      "company": "Freelance",
-      "period": "May 2022 - Present",
+      "company": "Bercont",
+      "period": "May 2024 - Present",
       "description": "Development for various clients, providing development support and solutions to specific needs."
     },
     "bercont": {
       "position": "Developer",
       "company": "Bercont",
-      "period": "May 2021 - May 2022",
+      "period": "May 2022 - May 2024",
       "description": "Development with node.js and MongoDB, to provide applications that allow facilitating solutions to clients."
     }
   },
@@ -160,10 +160,10 @@
     },
     "workExperience": {
       "title": "WORK EXPERIENCE",
-      "freelance": {
+      "bercontCurrent": {
         "position": "Full Stack Developer",
-        "company": "Freelance",
-        "period": "May 2022 - Present",
+        "company": "Bercont",
+        "period": "May 2024 - Present",
         "points": [
           "Full-stack web application development for diverse clients, implementing RESTful APIs with Node.js and Express",
           "Responsive interface development with Vue.js, Nuxt.js, React and Tailwind CSS",
@@ -174,7 +174,7 @@
       "bercontDeveloper": {
         "position": "Developer",
         "company": "Bercont",
-        "period": "May 2021 - May 2022",
+        "period": "May 2022 - May 2024",
         "points": [
           "Web application development with Node.js and MongoDB for enterprise clients",
           "Microservices architecture and efficient API implementation",

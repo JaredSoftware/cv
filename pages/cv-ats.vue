@@ -54,11 +54,11 @@
         
         <div class="cv-job">
           <div class="cv-job-header">
-            <strong>{{ $t('cvAts.workExperience.freelance.position') }}</strong> — {{ $t('cvAts.workExperience.freelance.company') }}
+            <strong>{{ $t('cvAts.workExperience.bercontCurrent.position') }}</strong> — {{ $t('cvAts.workExperience.bercontCurrent.company') }}
           </div>
-          <div class="cv-job-date">{{ $t('cvAts.workExperience.freelance.period') }}</div>
+          <div class="cv-job-date">{{ $t('cvAts.workExperience.bercontCurrent.period') }}</div>
           <ul class="cv-job-list">
-            <li v-for="(point, index) in freelancePoints" :key="index">{{ point }}</li>
+            <li v-for="(point, index) in bercontCurrentPoints" :key="index">{{ point }}</li>
           </ul>
         </div>
 
@@ -166,7 +166,7 @@ const getTranslationArray = (key) => {
   }
 }
 
-const freelancePoints = computed(() => getTranslationArray('cvAts.workExperience.freelance.points'))
+const bercontCurrentPoints = computed(() => getTranslationArray('cvAts.workExperience.bercontCurrent.points'))
 const bercontDeveloperPoints = computed(() => getTranslationArray('cvAts.workExperience.bercontDeveloper.points'))
 const internshipPoints = computed(() => getTranslationArray('cvAts.workExperience.internship.points'))
 

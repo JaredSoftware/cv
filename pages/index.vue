@@ -90,12 +90,12 @@
                       </div>
                       <div>
                         <div class="flex flex-col sm:flex-row justify-between sm:items-center">
-                          <h3 class="text-lg font-semibold text-text-primary-light dark:text-white">{{ $t('experience.freelance.position') }}</h3>
-                          <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1 sm:mt-0">{{ $t('experience.freelance.period') }}</p>
+                          <h3 class="text-lg font-semibold text-text-primary-light dark:text-white">{{ $t('experience.bercontCurrent.position') }}</h3>
+                          <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1 sm:mt-0">{{ $t('experience.bercontCurrent.period') }}</p>
                         </div>
-                        <p class="text-base text-text-secondary-light dark:text-text-secondary-dark mt-1">{{ $t('experience.freelance.company') }}</p>
+                        <p class="text-base text-text-secondary-light dark:text-text-secondary-dark mt-1">{{ $t('experience.bercontCurrent.company') }}</p>
                         <ul class="list-disc pl-5 mt-3 text-text-secondary-light dark:text-text-secondary-dark text-sm space-y-2">
-                          <li>{{ $t('experience.freelance.description') }}</li>
+                          <li>{{ $t('experience.bercontCurrent.description') }}</li>
                         </ul>
                       </div>
                     </div>
