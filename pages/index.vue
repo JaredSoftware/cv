@@ -127,8 +127,8 @@
                     <span class="material-symbols-outlined text-primary dark:text-blue-400 !text-3xl">lightbulb</span>
                     {{ $t('sections.projects') }}
                   </h2>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft overflow-hidden group">
+                  <div class="flex justify-center">
+                    <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft overflow-hidden group w-full max-w-2xl">
                       <a href="https://www.myassist-me.com/" target="_blank" rel="noopener noreferrer" class="block">
                         <div class="w-full h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
                           <div class="text-center text-white px-4">
