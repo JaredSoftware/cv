@@ -171,18 +171,35 @@ const bercontDeveloperPoints = computed(() => getTranslationArray('cvAts.workExp
 const internshipPoints = computed(() => getTranslationArray('cvAts.workExperience.internship.points'))
 
 const downloadPDF = async () => {
+  if (!process.client) {
+    console.warn('PDF generation only available in browser')
+    return
+  }
+  
   try {
+    // Verificar que el composable esté disponible
+    if (!generatePDF) {
+      throw new Error('PDF generator not available')
+    }
+    
     // Esperar a que Vue termine de renderizar todas las traducciones
     await nextTick()
     
     // Dar tiempo adicional para que el DOM se actualice completamente
     // Esto asegura que las traducciones estén visibles antes de capturar
-    await new Promise(resolve => setTimeout(resolve, 100))
+    await new Promise(resolve => setTimeout(resolve, 200))
     
     // Verificar que el contenido está renderizado correctamente
     const element = document.getElementById('cv-ats')
     if (!element) {
       throw new Error('Elemento cv-ats no encontrado')
+    }
+    
+    // Verificar que el contenido tiene texto
+    const textContent = element.textContent || element.innerText
+    if (!textContent || textContent.trim().length === 0) {
+      console.warn('El contenido parece estar vacío, esperando más tiempo...')
+      await new Promise(resolve => setTimeout(resolve, 500))
     }
     
     // Forzar un re-render asegurando que todas las traducciones estén cargadas
@@ -196,8 +213,8 @@ const downloadPDF = async () => {
   } catch (error) {
     console.error('Error al generar PDF:', error)
     const errorMessage = locale.value === 'es'
-      ? 'Error al generar el PDF. Por favor, intenta usar la función de imprimir del navegador (Ctrl+P).'
-      : 'Error generating PDF. Please try using the browser print function (Ctrl+P).'
+      ? `Error al generar el PDF: ${error.message}. Por favor, intenta usar la función de imprimir del navegador (Ctrl+P o Cmd+P).`
+      : `Error generating PDF: ${error.message}. Please try using the browser print function (Ctrl+P or Cmd+P).`
     alert(errorMessage)
   }
 }
