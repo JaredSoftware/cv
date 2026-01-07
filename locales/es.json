@@ -57,21 +57,6 @@
     }
   },
   "projects": {
-    "fintech": {
-      "name": "Fintech App Redesign",
-      "role": "Lead Designer",
-      "description": "Simplified user flows and UI, leading to a 25% increase in daily active users."
-    },
-    "analytics": {
-      "name": "Analytics Dashboard",
-      "role": "UX/UI Designer",
-      "description": "Created a data visualization platform that reduced report generation time by 50%."
-    },
-    "ecommerce": {
-      "name": "E-commerce Platform",
-      "role": "Product Designer",
-      "description": "Designed a new checkout experience that decreased cart abandonment by 15%."
-    },
     "assistme": {
       "name": "ASSIST-ME Platform",
       "role": "Full Stack Developer",
