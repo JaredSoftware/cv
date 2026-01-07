@@ -129,57 +129,6 @@
                   </h2>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft overflow-hidden group">
-                      <img 
-                        alt="Fintech App Screenshot" 
-                        class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAFw56GkYEAJbd1fWsLwQp-VSkZu1ysi31mKJzOKlO3TufSI1lnJDhY2Z1MAJyFGY_EJ5HElf_RmEreYOTpal6vy3X6nIG6AI0NmMusWvUvWYXqr-q_9TGtgjrOn98VBxqxyRML6RYPojnp3z3Oz7BfAtn9TId3TKQsXvPqvAAB77t0lft8yjiWPuvmzERrkHj8hg96qcMBwJC4kga2DCI_u4n_UEfZHjiftD18dHd2X3sN-csUha0F9igf4-Y_X1PQBiL_4aEcKQ"
-                      />
-                      <div class="p-4">
-                        <h3 class="text-lg font-semibold text-text-primary-light dark:text-white">{{ $t('projects.fintech.name') }}</h3>
-                        <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">{{ $t('projects.fintech.role') }}</p>
-                        <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-2">{{ $t('projects.fintech.description') }}</p>
-                        <div class="flex flex-wrap gap-2 mt-3">
-                          <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Figma</span>
-                          <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">User Research</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft overflow-hidden group">
-                      <img 
-                        alt="Analytics Dashboard Screenshot" 
-                        class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9X-MJCG8eRxRKckr15osoo1GFfxvBmdLVNQazpqxqqzSl9vSYHpjHy2wlE7pa6AqMRD7drOQrOTmvM87joxk4IlLoScRrLOlUbZ5kOAT9DTo3o2rSTktwc96CWkqJhSjEaJbcCfwDPmgno4VG2CJCLS-kt1YGAeiwJNpOyPUck_xydQfZwErYvKW9XkwNoq21by-rz453w5uzI5QW9P5-HKK-k1B_mux7hwsjq-x79MfmT0y_iFcPGJnqv6Pul6CoHlmWcyWhSJY"
-                      />
-                      <div class="p-4">
-                        <h3 class="text-lg font-semibold text-text-primary-light dark:text-white">{{ $t('projects.analytics.name') }}</h3>
-                        <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">{{ $t('projects.analytics.role') }}</p>
-                        <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-2">{{ $t('projects.analytics.description') }}</p>
-                        <div class="flex flex-wrap gap-2 mt-3">
-                          <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Sketch</span>
-                          <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Prototyping</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft overflow-hidden group">
-                      <img 
-                        alt="E-commerce Platform Screenshot" 
-                        class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrYinjTLDMXMiHf3vKutu3Blwydi778JtJNf6Iz4QoEhYvpzPmcUm1jolDWQa8T9HSmnjvL1cH68_QmUsRAcJcJPrtYULhYiJoNP3AP-9Vn4Is6jZSFb3PDXJVLxnutsFviCTS0OP2FpYgN7D0HONG08tgeEpg7Ira57SrGZEHN5PiWlL9aTO53p0x01GO7whC7TKS3Zj_sMx0x1vHBnc85YvuNEady0L2lBUQd61ul9p93ZvOhW9775DgE9n_Llrh5c82XPS9ZO0"
-                      />
-                      <div class="p-4">
-                        <h3 class="text-lg font-semibold text-text-primary-light dark:text-white">{{ $t('projects.ecommerce.name') }}</h3>
-                        <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">{{ $t('projects.ecommerce.role') }}</p>
-                        <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-2">{{ $t('projects.ecommerce.description') }}</p>
-                        <div class="flex flex-wrap gap-2 mt-3">
-                          <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Adobe XD</span>
-                          <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">A/B Testing</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft overflow-hidden group">
                       <a href="https://www.myassist-me.com/" target="_blank" rel="noopener noreferrer" class="block">
                         <div class="w-full h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
                           <div class="text-center text-white px-4">
