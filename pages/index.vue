@@ -162,7 +162,7 @@
                       </div>
                     </div>
 
-                    <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft overflow-hidden group md:col-span-2">
+                    <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft overflow-hidden group">
                       <img 
                         alt="E-commerce Platform Screenshot" 
                         class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
@@ -177,6 +177,28 @@
                           <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">A/B Testing</span>
                         </div>
                       </div>
+                    </div>
+
+                    <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft overflow-hidden group">
+                      <a href="https://www.myassist-me.com/" target="_blank" rel="noopener noreferrer" class="block">
+                        <div class="w-full h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                          <div class="text-center text-white px-4">
+                            <div class="text-4xl font-bold mb-2">ASSIST-ME</div>
+                            <div class="text-sm opacity-90">Virtual Receptionist Platform</div>
+                          </div>
+                        </div>
+                        <div class="p-4">
+                          <h3 class="text-lg font-semibold text-text-primary-light dark:text-white">{{ $t('projects.assistme.name') }}</h3>
+                          <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">{{ $t('projects.assistme.role') }}</p>
+                          <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-2">{{ $t('projects.assistme.description') }}</p>
+                          <div class="flex flex-wrap gap-2 mt-3">
+                            <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Figma</span>
+                            <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Node.js</span>
+                            <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Microservicios</span>
+                            <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">API REST</span>
+                          </div>
+                        </div>
+                      </a>
                     </div>
                   </div>
                 </section>

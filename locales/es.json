@@ -71,6 +71,11 @@
       "name": "E-commerce Platform",
       "role": "Product Designer",
       "description": "Designed a new checkout experience that decreased cart abandonment by 15%."
+    },
+    "assistme": {
+      "name": "ASSIST-ME Platform",
+      "role": "Full Stack Developer",
+      "description": "Plataforma completa de recepcionistas virtuales y servicios de atención empresarial. Desarrollo del backend con arquitectura de microservicios, APIs RESTful y gestión de llamadas en tiempo real."
     }
   },
   "education": {
