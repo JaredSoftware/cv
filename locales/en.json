@@ -162,9 +162,9 @@
         ]
       },
       "bercontDeveloper": {
-        "position": "Developer",
+        "position": "Developer Junior",
         "company": "Bercont",
-        "period": "May 2022 - May 2024",
+        "period": "13 May 2021 - 20 May 2022",
         "points": [
           "Web application development with Node.js and MongoDB for enterprise clients",
           "Microservices architecture and efficient API implementation",
@@ -175,7 +175,7 @@
       "internship": {
         "position": "Internship",
         "company": "Bercont",
-        "period": "January 2021 - May 2021",
+        "period": "29 Oct 2020 - 29 Apr 2021",
         "points": [
           "Software development support under senior engineer supervision",
           "Participation in web projects and application of best practices",
