@@ -224,7 +224,6 @@ const downloadPDF = async () => {
 .cv-ats-container {
   max-width: 210mm;
   width: 210mm;
-  max-height: 297mm;
   margin: 0 auto;
   padding: 12mm;
   background: white;
@@ -233,7 +232,6 @@ const downloadPDF = async () => {
   font-size: 10pt;
   line-height: 1.3;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .cv-header {
