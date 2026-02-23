@@ -38,6 +38,9 @@ export const usePDFGenerator = () => {
       const rect = element.getBoundingClientRect()
       
       // Configuración optimizada para ATS - una sola página
+      const safeWidth = rect.width > 0 ? rect.width : undefined
+      const safeHeight = rect.height > 0 ? rect.height : undefined
+
       const opt = {
         margin: [8, 8, 8, 8],
         filename: filename,
@@ -53,14 +56,14 @@ export const usePDFGenerator = () => {
           allowTaint: false,
           backgroundColor: '#ffffff',
           removeContainer: false,
-          width: rect.width,
-          height: rect.height,
+          width: safeWidth,
+          height: safeHeight,
           x: 0,
           y: 0,
           scrollX: 0,
           scrollY: 0,
-          windowWidth: rect.width,
-          windowHeight: rect.height,
+          windowWidth: safeWidth,
+          windowHeight: safeHeight,
           onclone: (clonedDoc) => {
             // Asegurar que el clon también tiene el contenido renderizado
             const clonedElement = clonedDoc.getElementById(elementId)
@@ -77,8 +80,9 @@ export const usePDFGenerator = () => {
           orientation: 'portrait',
           compress: true
         },
-        pagebreak: { 
-          mode: 'avoid-all'
+        pagebreak: {
+          mode: ['css', 'legacy'],
+          avoid: ['.cv-section', '.cv-job']
         }
       }
       
@@ -99,4 +103,3 @@ export const usePDFGenerator = () => {
     generatePDF
   }
 }
-
