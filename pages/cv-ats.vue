@@ -14,6 +14,7 @@
       <!-- Header -->
       <header class="cv-header">
         <h1 class="cv-name">{{ $t('name') }}</h1>
+        <p class="cv-title">{{ $t('title') }}</p>
         <div class="cv-contact">
           <span>{{ $t('cvAts.contact.location') }}</span> | 
           <span>{{ $t('cvAts.contact.email') }}</span> | 
@@ -24,12 +25,25 @@
         </div>
       </header>
 
-      <!-- Professional Summary -->
+      <!-- Professional Profile -->
       <section class="cv-section">
-        <h2 class="cv-section-title">{{ $t('cvAts.professionalSummary.title') }}</h2>
-        <p class="cv-text">
-          {{ $t('cvAts.professionalSummary.content') }}
-        </p>
+        <h2 class="cv-section-title">{{ $t('sections.professionalProfile') }}</h2>
+        <p class="cv-text">{{ $t('profile.intro') }}</p>
+
+        <p class="cv-subsection-title">{{ $t('profile.backend.title') }}</p>
+        <ul class="cv-job-list">
+          <li v-for="(point, index) in backendPoints" :key="'be-' + index">{{ point }}</li>
+        </ul>
+
+        <p class="cv-subsection-title">{{ $t('profile.tools.title') }}</p>
+        <ul class="cv-job-list">
+          <li v-for="(point, index) in toolsPoints" :key="'tools-' + index">{{ point }}</li>
+        </ul>
+
+        <p class="cv-subsection-title">{{ $t('profile.frontend.title') }}</p>
+        <ul class="cv-job-list">
+          <li v-for="(point, index) in frontendPoints" :key="'fe-' + index">{{ point }}</li>
+        </ul>
       </section>
 
       <!-- Technical Skills -->
@@ -42,7 +56,6 @@
           <p><strong>{{ $t('cvAts.technicalSkills.frontend') }}</strong> {{ $t('cvAts.technicalSkills.frontendList') }}</p>
           <p><strong>{{ $t('cvAts.technicalSkills.devops') }}</strong> {{ $t('cvAts.technicalSkills.devopsList') }}</p>
           <p><strong>{{ $t('cvAts.technicalSkills.architecture') }}</strong> {{ $t('cvAts.technicalSkills.architectureList') }}</p>
-          <p><strong>{{ $t('cvAts.technicalSkills.os') }}</strong> {{ $t('cvAts.technicalSkills.osList') }}</p>
           <p><strong>{{ $t('cvAts.technicalSkills.methodologies') }}</strong> {{ $t('cvAts.technicalSkills.methodologiesList') }}</p>
           <p><strong>{{ $t('cvAts.technicalSkills.testing') }}</strong> {{ $t('cvAts.technicalSkills.testingList') }}</p>
         </div>
@@ -50,13 +63,13 @@
 
       <!-- Work Experience -->
       <section class="cv-section">
-        <h2 class="cv-section-title">{{ $t('cvAts.workExperience.title') }}</h2>
-        
+        <h2 class="cv-section-title">{{ $t('sections.workExperience') }}</h2>
+
         <div class="cv-job">
           <div class="cv-job-header">
-            <strong>{{ $t('cvAts.workExperience.bercontCurrent.position') }}</strong> — {{ $t('cvAts.workExperience.bercontCurrent.company') }}
+            <strong>{{ $t('experience.bercontCurrent.position') }}</strong> — {{ $t('experience.bercontCurrent.company') }}
           </div>
-          <div class="cv-job-date">{{ $t('cvAts.workExperience.bercontCurrent.period') }}</div>
+          <div class="cv-job-date">{{ $t('experience.bercontCurrent.period') }}</div>
           <ul class="cv-job-list">
             <li v-for="(point, index) in bercontCurrentPoints" :key="index">{{ point }}</li>
           </ul>
@@ -64,9 +77,9 @@
 
         <div class="cv-job">
           <div class="cv-job-header">
-            <strong>{{ $t('cvAts.workExperience.bercontDeveloper.position') }}</strong> — {{ $t('cvAts.workExperience.bercontDeveloper.company') }}
+            <strong>{{ $t('experience.bercont.position') }}</strong> — {{ $t('experience.bercont.company') }}
           </div>
-          <div class="cv-job-date">{{ $t('cvAts.workExperience.bercontDeveloper.period') }}</div>
+          <div class="cv-job-date">{{ $t('experience.bercont.period') }}</div>
           <ul class="cv-job-list">
             <li v-for="(point, index) in bercontDeveloperPoints" :key="index">{{ point }}</li>
           </ul>
@@ -74,30 +87,48 @@
 
         <div class="cv-job">
           <div class="cv-job-header">
-            <strong>{{ $t('cvAts.workExperience.internship.position') }}</strong> — {{ $t('cvAts.workExperience.internship.company') }}
+            <strong>{{ $t('internships.bercont.company') }}</strong>
           </div>
-          <div class="cv-job-date">{{ $t('cvAts.workExperience.internship.period') }}</div>
+          <div class="cv-job-date">{{ $t('internships.bercont.period') }}</div>
           <ul class="cv-job-list">
             <li v-for="(point, index) in internshipPoints" :key="index">{{ point }}</li>
           </ul>
         </div>
       </section>
 
-      <!-- Education -->
+      <!-- Projects -->
       <section class="cv-section">
-        <h2 class="cv-section-title">{{ $t('cvAts.education.title') }}</h2>
-        <div class="cv-education">
-          <p>{{ $t('cvAts.education.technician') }}</p>
-          <p>{{ $t('cvAts.education.highschool') }}</p>
+        <h2 class="cv-section-title">{{ $t('sections.projects') }}</h2>
+        <div class="cv-job">
+          <div class="cv-job-header">
+            <strong>{{ $t('projects.assistme.name') }}</strong> — {{ $t('projects.assistme.role') }}
+          </div>
+          <div class="cv-job-date">myassist-me.com</div>
+          <p class="cv-text" style="margin-top: 4px;">{{ $t('projects.assistme.description') }}</p>
         </div>
       </section>
 
-      <!-- Additional Skills & Languages -->
+      <!-- Education -->
+      <section class="cv-section">
+        <h2 class="cv-section-title">{{ $t('sections.education') }}</h2>
+        <div class="cv-education">
+          <p><strong>{{ $t('education.technician.degree') }}</strong> — {{ $t('education.technician.period') }}</p>
+          <p><strong>{{ $t('education.highschool.degree') }}</strong> — {{ $t('education.highschool.period') }}</p>
+        </div>
+      </section>
+
+      <!-- Soft Skills & Languages -->
       <section class="cv-section">
         <h2 class="cv-section-title">{{ $t('cvAts.aptitudesAndLanguages.title') }}</h2>
         <div class="cv-text">
-          <p><strong>{{ $t('cvAts.aptitudesAndLanguages.aptitudes') }}</strong> {{ $t('cvAts.aptitudesAndLanguages.aptitudesList') }}</p>
-          <p><strong>{{ $t('cvAts.aptitudesAndLanguages.languages') }}</strong> {{ $t('cvAts.aptitudesAndLanguages.languagesList') }}</p>
+          <p>
+            <strong>{{ $t('cvAts.aptitudesAndLanguages.aptitudes') }}</strong>
+            {{ $t('softSkills.agileDelivery') }}, {{ $t('softSkills.technicalLeadership') }}, {{ $t('softSkills.solutionOriented') }}, {{ $t('softSkills.inventiveThinking') }}.
+          </p>
+          <p>
+            <strong>{{ $t('cvAts.aptitudesAndLanguages.languages') }}</strong>
+            {{ $t('cvAts.aptitudesAndLanguages.languagesList') }}
+          </p>
         </div>
       </section>
     </div>
@@ -169,6 +200,10 @@ const getTranslationArray = (key) => {
 const bercontCurrentPoints = computed(() => getTranslationArray('cvAts.workExperience.bercontCurrent.points'))
 const bercontDeveloperPoints = computed(() => getTranslationArray('cvAts.workExperience.bercontDeveloper.points'))
 const internshipPoints = computed(() => getTranslationArray('cvAts.workExperience.internship.points'))
+
+const backendPoints = computed(() => getTranslationArray('profile.backend.points'))
+const toolsPoints = computed(() => getTranslationArray('profile.tools.points'))
+const frontendPoints = computed(() => getTranslationArray('profile.frontend.points'))
 
 const downloadPDF = async () => {
   if (!process.client) {
@@ -243,8 +278,22 @@ const downloadPDF = async () => {
 .cv-name {
   font-size: 20pt;
   font-weight: bold;
-  margin: 0 0 6px 0;
+  margin: 0 0 3px 0;
   color: #000;
+}
+
+.cv-title {
+  font-size: 11pt;
+  font-weight: 600;
+  color: #2563eb;
+  margin: 0 0 6px 0;
+}
+
+.cv-subsection-title {
+  font-size: 10pt;
+  font-weight: bold;
+  margin: 8px 0 3px 0;
+  color: #333;
 }
 
 .cv-contact {
