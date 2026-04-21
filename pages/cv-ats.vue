@@ -2,135 +2,180 @@
   <div>
     <!-- Botón para descargar PDF -->
     <div id="pdf-button" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
-      <button 
+      <button
         @click="downloadPDF"
         style="padding: 10px 20px; background: #2563eb; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"
       >
-        📥 {{ $t('cvAts.downloadPDF') }}
+        &#128229; {{ $t('cvAts.downloadPDF') }}
       </button>
     </div>
-    
-    <div id="cv-ats" class="cv-ats-container">
-      <!-- Header -->
-      <header class="cv-header">
-        <h1 class="cv-name">{{ $t('name') }}</h1>
-        <p class="cv-title">{{ $t('title') }}</p>
-        <div class="cv-contact">
-          <span>{{ $t('cvAts.contact.location') }}</span> | 
-          <span>{{ $t('cvAts.contact.email') }}</span> | 
-          <span>{{ $t('cvAts.contact.phone') }}</span> | 
-          <span>{{ $t('cvAts.contact.github') }}</span> | 
-          <span>{{ $t('cvAts.contact.linkedin') }}</span> | 
-          <span>{{ $t('cvAts.contact.portfolio') }}</span>
+
+    <div id="cv-ats" class="cv-wrapper">
+      <!-- SIDEBAR -->
+      <aside class="cv-sidebar">
+
+        <!-- Foto -->
+        <div class="cv-photo-wrap">
+          <img :src="profileImagePath" alt="Foto" class="cv-photo" />
         </div>
-      </header>
 
-      <!-- Professional Profile -->
-      <section class="cv-section">
-        <h2 class="cv-section-title">{{ $t('sections.professionalProfile') }}</h2>
-        <p class="cv-text">{{ $t('profile.intro') }}</p>
+        <!-- Nombre en sidebar (mobile / visible en PDF pequeño) -->
+        <div class="cv-sidebar-name">{{ $t('name') }}</div>
 
-        <p class="cv-subsection-title">{{ $t('profile.backend.title') }}</p>
-        <ul class="cv-job-list">
-          <li v-for="(point, index) in backendPoints" :key="'be-' + index">{{ point }}</li>
-        </ul>
-
-        <p class="cv-subsection-title">{{ $t('profile.tools.title') }}</p>
-        <ul class="cv-job-list">
-          <li v-for="(point, index) in toolsPoints" :key="'tools-' + index">{{ point }}</li>
-        </ul>
-
-        <p class="cv-subsection-title">{{ $t('profile.frontend.title') }}</p>
-        <ul class="cv-job-list">
-          <li v-for="(point, index) in frontendPoints" :key="'fe-' + index">{{ point }}</li>
-        </ul>
-      </section>
-
-      <!-- Technical Skills -->
-      <section class="cv-section">
-        <h2 class="cv-section-title">{{ $t('cvAts.technicalSkills.title') }}</h2>
-        <div class="cv-skills">
-          <p><strong>{{ $t('cvAts.technicalSkills.languages') }}</strong> {{ $t('cvAts.technicalSkills.languagesList') }}</p>
-          <p><strong>{{ $t('cvAts.technicalSkills.frameworks') }}</strong> {{ $t('cvAts.technicalSkills.frameworksList') }}</p>
-          <p><strong>{{ $t('cvAts.technicalSkills.databases') }}</strong> {{ $t('cvAts.technicalSkills.databasesList') }}</p>
-          <p><strong>{{ $t('cvAts.technicalSkills.frontend') }}</strong> {{ $t('cvAts.technicalSkills.frontendList') }}</p>
-          <p><strong>{{ $t('cvAts.technicalSkills.devops') }}</strong> {{ $t('cvAts.technicalSkills.devopsList') }}</p>
-          <p><strong>{{ $t('cvAts.technicalSkills.architecture') }}</strong> {{ $t('cvAts.technicalSkills.architectureList') }}</p>
-          <p><strong>{{ $t('cvAts.technicalSkills.methodologies') }}</strong> {{ $t('cvAts.technicalSkills.methodologiesList') }}</p>
-          <p><strong>{{ $t('cvAts.technicalSkills.testing') }}</strong> {{ $t('cvAts.technicalSkills.testingList') }}</p>
-        </div>
-      </section>
-
-      <!-- Work Experience -->
-      <section class="cv-section">
-        <h2 class="cv-section-title">{{ $t('sections.workExperience') }}</h2>
-
-        <div class="cv-job">
-          <div class="cv-job-header">
-            <strong>{{ $t('experience.bercontCurrent.position') }}</strong> — {{ $t('experience.bercontCurrent.company') }}
-          </div>
-          <div class="cv-job-date">{{ $t('experience.bercontCurrent.period') }}</div>
-          <ul class="cv-job-list">
-            <li v-for="(point, index) in bercontCurrentPoints" :key="index">{{ point }}</li>
+        <!-- Contacto -->
+        <div class="cv-sidebar-section">
+          <h3 class="cv-sidebar-title">{{ $t('sections.contactInfo') }}</h3>
+          <ul class="cv-contact-list">
+            <li><span class="cv-icon">&#9993;</span> jaredwesley27@hotmail.com</li>
+            <li><span class="cv-icon">&#9990;</span> +57 322 926 6046</li>
+            <li><span class="cv-icon">&#9679;</span> {{ $t('cvAts.contact.location') }}</li>
+            <li><span class="cv-icon">&#9679;</span> github.com/JaredSoftware</li>
+            <li><span class="cv-icon">&#9679;</span> linkedin.com/in/jared-wesley-vargas-cortes-0ab9a71a8</li>
           </ul>
         </div>
 
-        <div class="cv-job">
-          <div class="cv-job-header">
-            <strong>{{ $t('experience.bercont.position') }}</strong> — {{ $t('experience.bercont.company') }}
-          </div>
-          <div class="cv-job-date">{{ $t('experience.bercont.period') }}</div>
-          <ul class="cv-job-list">
-            <li v-for="(point, index) in bercontDeveloperPoints" :key="index">{{ point }}</li>
+        <!-- Stack Técnico -->
+        <div class="cv-sidebar-section">
+          <h3 class="cv-sidebar-title">{{ $t('skills.coreStack') }}</h3>
+          <div class="cv-skill-row"><span class="cv-skill-name">Node.js</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">NestJS</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9675;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">APIs REST</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">PostgreSQL</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9675;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">MongoDB</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9675;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">Docker</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9675;&#9675;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">Linux / PM2</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9675;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">Git</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">Vue / Nuxt</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9675;&#9675;</span></div>
+        </div>
+
+        <!-- Habilidades Blandas -->
+        <div class="cv-sidebar-section">
+          <h3 class="cv-sidebar-title">{{ $t('skills.softSkills') }}</h3>
+          <div class="cv-skill-row"><span class="cv-skill-name">{{ $t('softSkills.agileDelivery') }}</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">{{ $t('softSkills.technicalLeadership') }}</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9675;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">{{ $t('softSkills.solutionOriented') }}</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">{{ $t('softSkills.inventiveThinking') }}</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></div>
+        </div>
+
+        <!-- Idiomas -->
+        <div class="cv-sidebar-section">
+          <h3 class="cv-sidebar-title">{{ $t('sections.languages') }}</h3>
+          <div class="cv-skill-row"><span class="cv-skill-name">Español</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></div>
+          <div class="cv-skill-row"><span class="cv-skill-name">{{ $t('languages.english') }}</span><span class="cv-dots">&#9679;&#9679;&#9679;&#9679;&#9675;</span></div>
+        </div>
+
+        <!-- Hobbies -->
+        <div class="cv-sidebar-section">
+          <h3 class="cv-sidebar-title">{{ $t('sections.hobbies') }}</h3>
+          <p class="cv-sidebar-text">{{ $t('hobbies.music') }}</p>
+          <p class="cv-sidebar-text">{{ $t('hobbies.learning') }}</p>
+        </div>
+
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="cv-main">
+
+        <!-- Header -->
+        <div class="cv-main-header">
+          <h1 class="cv-name">{{ $t('name') }}</h1>
+          <p class="cv-job-title">{{ $t('title') }}</p>
+        </div>
+
+        <!-- Perfil Profesional -->
+        <section class="cv-section">
+          <h2 class="cv-section-title">{{ $t('sections.professionalProfile') }}</h2>
+          <p class="cv-text">{{ $t('profile.intro') }}</p>
+
+          <p class="cv-subsection-title">{{ $t('profile.backend.title') }}</p>
+          <ul class="cv-list">
+            <li v-for="(point, index) in backendPoints" :key="'be-' + index">{{ point }}</li>
           </ul>
-        </div>
 
-        <div class="cv-job">
-          <div class="cv-job-header">
-            <strong>{{ $t('internships.bercont.company') }}</strong>
-          </div>
-          <div class="cv-job-date">{{ $t('internships.bercont.period') }}</div>
-          <ul class="cv-job-list">
-            <li v-for="(point, index) in internshipPoints" :key="index">{{ point }}</li>
+          <p class="cv-subsection-title">{{ $t('profile.tools.title') }}</p>
+          <ul class="cv-list">
+            <li v-for="(point, index) in toolsPoints" :key="'tools-' + index">{{ point }}</li>
           </ul>
-        </div>
-      </section>
+        </section>
 
-      <!-- Projects -->
-      <section class="cv-section">
-        <h2 class="cv-section-title">{{ $t('sections.projects') }}</h2>
-        <div class="cv-job">
-          <div class="cv-job-header">
-            <strong>{{ $t('projects.assistme.name') }}</strong> — {{ $t('projects.assistme.role') }}
+        <!-- Experiencia Laboral -->
+        <section class="cv-section">
+          <h2 class="cv-section-title">{{ $t('sections.workExperience') }}</h2>
+
+          <div class="cv-job">
+            <div class="cv-job-top">
+              <div>
+                <div class="cv-job-position">{{ $t('experience.bercontCurrent.position') }}</div>
+                <div class="cv-job-company">{{ $t('experience.bercontCurrent.company') }}</div>
+              </div>
+              <div class="cv-job-date">{{ $t('experience.bercontCurrent.period') }}</div>
+            </div>
+            <ul class="cv-list">
+              <li v-for="(point, index) in bercontCurrentPoints" :key="index">{{ point }}</li>
+            </ul>
           </div>
-          <div class="cv-job-date">myassist-me.com</div>
-          <p class="cv-text" style="margin-top: 4px;">{{ $t('projects.assistme.description') }}</p>
-        </div>
-      </section>
 
-      <!-- Education -->
-      <section class="cv-section">
-        <h2 class="cv-section-title">{{ $t('sections.education') }}</h2>
-        <div class="cv-education">
-          <p><strong>{{ $t('education.technician.degree') }}</strong> — {{ $t('education.technician.period') }}</p>
-          <p><strong>{{ $t('education.highschool.degree') }}</strong> — {{ $t('education.highschool.period') }}</p>
-        </div>
-      </section>
+          <div class="cv-job">
+            <div class="cv-job-top">
+              <div>
+                <div class="cv-job-position">{{ $t('experience.bercont.position') }}</div>
+                <div class="cv-job-company">{{ $t('experience.bercont.company') }}</div>
+              </div>
+              <div class="cv-job-date">{{ $t('experience.bercont.period') }}</div>
+            </div>
+            <ul class="cv-list">
+              <li v-for="(point, index) in bercontDeveloperPoints" :key="index">{{ point }}</li>
+            </ul>
+          </div>
 
-      <!-- Soft Skills & Languages -->
-      <section class="cv-section">
-        <h2 class="cv-section-title">{{ $t('cvAts.aptitudesAndLanguages.title') }}</h2>
-        <div class="cv-text">
-          <p>
-            <strong>{{ $t('cvAts.aptitudesAndLanguages.aptitudes') }}</strong>
-            {{ $t('softSkills.agileDelivery') }}, {{ $t('softSkills.technicalLeadership') }}, {{ $t('softSkills.solutionOriented') }}, {{ $t('softSkills.inventiveThinking') }}.
-          </p>
-          <p>
-            <strong>{{ $t('cvAts.aptitudesAndLanguages.languages') }}</strong>
-            {{ $t('cvAts.aptitudesAndLanguages.languagesList') }}
-          </p>
-        </div>
-      </section>
+          <div class="cv-job">
+            <div class="cv-job-top">
+              <div>
+                <div class="cv-job-position">{{ $t('sections.internships') }}</div>
+                <div class="cv-job-company">{{ $t('internships.bercont.company') }}</div>
+              </div>
+              <div class="cv-job-date">{{ $t('internships.bercont.period') }}</div>
+            </div>
+            <ul class="cv-list">
+              <li v-for="(point, index) in internshipPoints" :key="index">{{ point }}</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Proyectos -->
+        <section class="cv-section">
+          <h2 class="cv-section-title">{{ $t('sections.projects') }}</h2>
+          <div class="cv-job">
+            <div class="cv-job-top">
+              <div>
+                <div class="cv-job-position">{{ $t('projects.assistme.name') }}</div>
+                <div class="cv-job-company">{{ $t('projects.assistme.role') }} · myassist-me.com</div>
+              </div>
+            </div>
+            <p class="cv-text" style="margin-top: 5px;">{{ $t('projects.assistme.description') }}</p>
+          </div>
+        </section>
+
+        <!-- Formación -->
+        <section class="cv-section">
+          <h2 class="cv-section-title">{{ $t('sections.education') }}</h2>
+          <div class="cv-job">
+            <div class="cv-job-top">
+              <div class="cv-job-position">{{ $t('education.technician.degree') }}</div>
+              <div class="cv-job-date">{{ $t('education.technician.period') }}</div>
+            </div>
+            <div class="cv-job-company">{{ $t('education.technician.description') }}</div>
+          </div>
+          <div class="cv-job">
+            <div class="cv-job-top">
+              <div class="cv-job-position">{{ $t('education.highschool.degree') }}</div>
+              <div class="cv-job-date">{{ $t('education.highschool.period') }}</div>
+            </div>
+            <div class="cv-job-company">{{ $t('education.highschool.description') }}</div>
+          </div>
+        </section>
+
+      </main>
     </div>
   </div>
 </template>
@@ -141,6 +186,13 @@ import { useI18n } from 'vue-i18n'
 
 const { generatePDF } = usePDFGenerator()
 const { t, tm, messages, locale } = useI18n()
+const router = useRouter()
+
+const basePath = computed(() => {
+  const base = router.options.history?.base || '/cv/'
+  return base.replace(/\/$/, '') + '/'
+})
+const profileImagePath = computed(() => `${basePath.value}jared.jpeg?v=20260421`)
 
 // Función para extraer strings de arrays de traducciones
 const extractStrings = (items) => {
@@ -256,155 +308,229 @@ const downloadPDF = async () => {
 </script>
 
 <style>
-.cv-ats-container {
-  max-width: 210mm;
+/* ── Wrapper ── */
+.cv-wrapper {
+  display: flex;
   width: 210mm;
+  min-height: 297mm;
   margin: 0 auto;
-  padding: 12mm;
-  background: white;
-  color: #000;
-  font-family: 'Arial', 'Calibri', 'Helvetica', sans-serif;
-  font-size: 10pt;
-  line-height: 1.3;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-size: 9.5pt;
+  line-height: 1.4;
+  color: #1f2937;
+  background: #fff;
   box-sizing: border-box;
 }
 
-.cv-header {
-  margin-bottom: 12px;
-  border-bottom: 2px solid #000;
-  padding-bottom: 8px;
+/* ── SIDEBAR ── */
+.cv-sidebar {
+  width: 34%;
+  min-width: 34%;
+  background: #1a3a5c;
+  color: #e2e8f0;
+  padding: 20px 14px;
+  box-sizing: border-box;
+}
+
+.cv-photo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.cv-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #3b82f6;
+}
+
+.cv-sidebar-name {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.cv-sidebar-section {
+  margin-bottom: 16px;
+}
+
+.cv-sidebar-title {
+  font-size: 8.5pt;
+  font-weight: bold;
+  color: #93c5fd;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid #2d5a8a;
+  padding-bottom: 4px;
+  margin: 0 0 8px 0;
+}
+
+.cv-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-contact-list li {
+  font-size: 8pt;
+  color: #cbd5e1;
+  margin-bottom: 4px;
+  word-break: break-all;
+  line-height: 1.3;
+}
+
+.cv-icon {
+  margin-right: 4px;
+  color: #60a5fa;
+}
+
+.cv-skill-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.cv-skill-name {
+  font-size: 8.5pt;
+  color: #e2e8f0;
+  flex: 1;
+  padding-right: 6px;
+}
+
+.cv-dots {
+  font-size: 8pt;
+  color: #60a5fa;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.cv-sidebar-text {
+  font-size: 8pt;
+  color: #cbd5e1;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+/* ── MAIN ── */
+.cv-main {
+  width: 66%;
+  padding: 20px 18px;
+  box-sizing: border-box;
+}
+
+.cv-main-header {
+  border-bottom: 3px solid #2563eb;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .cv-name {
   font-size: 20pt;
   font-weight: bold;
+  color: #1e3a5f;
   margin: 0 0 3px 0;
-  color: #000;
+  line-height: 1.1;
 }
 
-.cv-title {
-  font-size: 11pt;
+.cv-job-title {
+  font-size: 10pt;
   font-weight: 600;
   color: #2563eb;
-  margin: 0 0 6px 0;
-}
-
-.cv-subsection-title {
-  font-size: 10pt;
-  font-weight: bold;
-  margin: 8px 0 3px 0;
-  color: #333;
-}
-
-.cv-contact {
-  font-size: 9pt;
-  color: #333;
-  line-height: 1.4;
+  margin: 0;
 }
 
 .cv-section {
-  margin-bottom: 10px;
-  page-break-inside: avoid;
+  margin-bottom: 14px;
 }
 
 .cv-section-title {
-  font-size: 12pt;
+  font-size: 10pt;
   font-weight: bold;
-  margin: 0 0 6px 0;
-  color: #000;
+  color: #1e3a5f;
   text-transform: uppercase;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 3px;
+  letter-spacing: 0.06em;
+  border-left: 4px solid #2563eb;
+  padding-left: 7px;
+  margin: 0 0 8px 0;
 }
 
 .cv-text {
-  margin: 0;
+  font-size: 8.5pt;
+  color: #374151;
+  line-height: 1.5;
+  margin: 0 0 6px 0;
   text-align: justify;
-  font-size: 10pt;
-  line-height: 1.4;
 }
 
-.cv-skills p {
-  margin: 2px 0;
-  font-size: 10pt;
-  line-height: 1.2;
-}
-
-.cv-job {
-  margin-bottom: 12px;
-  page-break-inside: avoid;
-}
-
-.cv-job-header {
-  font-size: 11pt;
-  font-weight: bold;
-  margin-bottom: 2px;
-}
-
-.cv-job-date {
+.cv-subsection-title {
   font-size: 9pt;
-  font-style: italic;
-  margin-bottom: 5px;
-  color: #555;
+  font-weight: bold;
+  color: #1e3a5f;
+  margin: 8px 0 3px 0;
 }
 
-.cv-job-list {
-  margin: 5px 0 0 18px;
+.cv-list {
+  margin: 4px 0 0 16px;
   padding: 0;
   list-style-type: disc;
 }
 
-.cv-job-list li {
-  margin: 3px 0;
-  font-size: 10pt;
-  line-height: 1.3;
+.cv-list li {
+  font-size: 8.5pt;
+  color: #374151;
+  margin-bottom: 3px;
+  line-height: 1.4;
 }
 
-.cv-education p {
-  margin: 5px 0;
-  font-size: 10pt;
-  line-height: 1.3;
+.cv-job {
+  margin-bottom: 10px;
+  page-break-inside: avoid;
 }
 
-/* Estilos para impresión/PDF */
+.cv-job-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2px;
+}
+
+.cv-job-position {
+  font-size: 9.5pt;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.cv-job-company {
+  font-size: 8.5pt;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.cv-job-date {
+  font-size: 8pt;
+  color: #2563eb;
+  white-space: nowrap;
+  margin-left: 8px;
+  font-style: italic;
+}
+
+/* ── Print / PDF ── */
 @media print {
-  body {
-    background: white;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .cv-ats-container {
-    padding: 15mm;
-    margin: 0;
-    box-shadow: none;
-  }
-  
-  .cv-section {
-    page-break-inside: avoid;
-  }
-  
-  .cv-job {
-    page-break-inside: avoid;
-  }
-  
-  /* Ocultar botón al imprimir */
-  #pdf-button {
-    display: none !important;
-  }
+  body { margin: 0; padding: 0; background: white; }
+  #pdf-button { display: none !important; }
+  .cv-wrapper { box-shadow: none; }
 }
 
-/* Mostrar en pantalla para preview */
 @media screen {
-  body {
-    background: #f5f5f5;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  .cv-ats-container {
-    background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  body { background: #e5e7eb; margin: 0; padding: 20px; }
+  .cv-wrapper {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
     margin: 20px auto;
   }
 }
