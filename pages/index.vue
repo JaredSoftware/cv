@@ -56,13 +56,6 @@
                   </p>
                   
                   <h3 class="text-lg font-semibold text-text-primary-light dark:text-white mt-4 mb-2">
-                    {{ $t('profile.frontend.title') }}
-                  </h3>
-                  <ul class="list-disc pl-5 text-text-secondary-light dark:text-text-secondary-dark text-sm space-y-2 mb-4">
-                    <li v-for="(point, index) in frontendPoints" :key="index">{{ point }}</li>
-                  </ul>
-
-                  <h3 class="text-lg font-semibold text-text-primary-light dark:text-white mt-4 mb-2">
                     {{ $t('profile.backend.title') }}
                   </h3>
                   <ul class="list-disc pl-5 text-text-secondary-light dark:text-text-secondary-dark text-sm space-y-2 mb-4">
@@ -72,8 +65,15 @@
                   <h3 class="text-lg font-semibold text-text-primary-light dark:text-white mt-4 mb-2">
                     {{ $t('profile.tools.title') }}
                   </h3>
-                  <ul class="list-disc pl-5 text-text-secondary-light dark:text-text-secondary-dark text-sm space-y-2">
+                  <ul class="list-disc pl-5 text-text-secondary-light dark:text-text-secondary-dark text-sm space-y-2 mb-4">
                     <li v-for="(point, index) in toolsPoints" :key="index">{{ point }}</li>
+                  </ul>
+
+                  <h3 class="text-lg font-semibold text-text-primary-light dark:text-white mt-4 mb-2">
+                    {{ $t('profile.frontend.title') }}
+                  </h3>
+                  <ul class="list-disc pl-5 text-text-secondary-light dark:text-text-secondary-dark text-sm space-y-2">
+                    <li v-for="(point, index) in frontendPoints" :key="index">{{ point }}</li>
                   </ul>
                 </section>
 
@@ -254,52 +254,77 @@
                     {{ $t('sections.skills') }}
                   </h2>
                   <div class="space-y-6">
+
+                    <!-- Habilidades Blandas -->
+                    <div class="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
+                      <h4 class="font-semibold text-blue-700 dark:text-blue-300 mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined !text-lg">groups</span>
+                        {{ $t('skills.softSkills') }}
+                      </h4>
+                      <div class="grid grid-cols-1 gap-3">
+                        <div class="flex items-start gap-3 bg-white dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-lg px-3 py-2.5">
+                          <span class="material-symbols-outlined text-blue-500 dark:text-blue-300 !text-xl mt-0.5 flex-shrink-0">rocket_launch</span>
+                          <div>
+                            <p class="text-sm font-semibold text-blue-800 dark:text-blue-200">{{ $t('softSkills.agileDelivery') }}</p>
+                            <p class="text-xs text-blue-600 dark:text-blue-400 mt-0.5">{{ $t('softSkills.agileDeliveryDesc') }}</p>
+                          </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-lg px-3 py-2.5">
+                          <span class="material-symbols-outlined text-blue-500 dark:text-blue-300 !text-xl mt-0.5 flex-shrink-0">supervisor_account</span>
+                          <div>
+                            <p class="text-sm font-semibold text-blue-800 dark:text-blue-200">{{ $t('softSkills.technicalLeadership') }}</p>
+                            <p class="text-xs text-blue-600 dark:text-blue-400 mt-0.5">{{ $t('softSkills.technicalLeadershipDesc') }}</p>
+                          </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-lg px-3 py-2.5">
+                          <span class="material-symbols-outlined text-blue-500 dark:text-blue-300 !text-xl mt-0.5 flex-shrink-0">target</span>
+                          <div>
+                            <p class="text-sm font-semibold text-blue-800 dark:text-blue-200">{{ $t('softSkills.solutionOriented') }}</p>
+                            <p class="text-xs text-blue-600 dark:text-blue-400 mt-0.5">{{ $t('softSkills.solutionOrientedDesc') }}</p>
+                          </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-lg px-3 py-2.5">
+                          <span class="material-symbols-outlined text-blue-500 dark:text-blue-300 !text-xl mt-0.5 flex-shrink-0">explore</span>
+                          <div>
+                            <p class="text-sm font-semibold text-blue-800 dark:text-blue-200">{{ $t('softSkills.inventiveThinking') }}</p>
+                            <p class="text-xs text-blue-600 dark:text-blue-400 mt-0.5">{{ $t('softSkills.inventiveThinkingDesc') }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Stack Técnico de Impacto -->
                     <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-4">
-                      <h4 class="font-semibold text-text-primary-light dark:text-white mb-3">{{ $t('skills.languages') }}</h4>
+                      <h4 class="font-semibold text-text-primary-light dark:text-white mb-3 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary dark:text-blue-400 !text-lg">terminal</span>
+                        {{ $t('skills.coreStack') }}
+                      </h4>
                       <div class="flex flex-wrap gap-2">
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">JavaScript</span>
                         <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Node.js</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Vue</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Nuxt.js</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">React</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Next.js</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Sails.js</span>
-                      </div>
-                    </div>
-
-                    <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-4">
-                      <h4 class="font-semibold text-text-primary-light dark:text-white mb-3">{{ $t('skills.databases') }}</h4>
-                      <div class="flex flex-wrap gap-2">
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">MongoDB</span>
+                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">NestJS</span>
+                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Express</span>
+                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">APIs REST</span>
                         <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">PostgreSQL</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">MySQL</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">SQL</span>
+                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">MongoDB</span>
+                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Microservicios</span>
                       </div>
                     </div>
 
+                    <!-- Infraestructura y DevOps -->
                     <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-4">
-                      <h4 class="font-semibold text-text-primary-light dark:text-white mb-3">{{ $t('skills.tools') }}</h4>
+                      <h4 class="font-semibold text-text-primary-light dark:text-white mb-3 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary dark:text-blue-400 !text-lg">dns</span>
+                        {{ $t('skills.infraTools') }}
+                      </h4>
                       <div class="flex flex-wrap gap-2">
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Tailwind CSS</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Bootstrap</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Sass</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Git</span>
+                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Docker</span>
+                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Linux</span>
                         <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">PM2</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Ubuntu</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">CentOS</span>
+                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Git</span>
+                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">WebSockets</span>
                       </div>
                     </div>
 
-                    <div class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-4">
-                      <h4 class="font-semibold text-text-primary-light dark:text-white mb-3">{{ $t('skills.aptitudes') }}</h4>
-                      <div class="flex flex-wrap gap-2">
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Comunicación</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Pensamiento Crítico</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Creatividad</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Trabajo en Equipo</span>
-                        <span class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-1.5 rounded-lg">Atención al Detalle</span>
-                      </div>
-                    </div>
                   </div>
                 </section>
 

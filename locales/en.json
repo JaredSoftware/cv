@@ -1,7 +1,7 @@
 {
   "name": "Jared Wesley Vargas Cortes",
-  "title": "Full Stack Developer",
-  "description": "Passionate and highly competent full-stack developer who can carry out projects from conception to implementation, ensuring that both frontend and backend work in perfect harmony to deliver exceptional results.",
+  "title": "Backend Engineer | APIs, Databases & Application Infrastructure",
+  "description": "Backend Engineer with experience in systems integration, API design and data optimization. Focused on building reliable services, maintaining stable production flows and solving technical problems end-to-end.",
   "downloadCV": "Download CV",
   "sections": {
     "professionalProfile": "Professional Profile",
@@ -16,51 +16,53 @@
     "githubContributions": "GitHub Contributions"
   },
   "profile": {
-    "intro": "With solid experience in web application development, I have acquired deep knowledge in a wide variety of key technologies covering both the server and client sides.",
-    "frontend": {
-      "title": "Frontend Development:",
-      "points": [
-        "Expert use of Vue to create dynamic and attractive user interfaces.",
-        "Competence in RESTful API development to ensure efficient communication between frontend and backend.",
-        "Ability to create attractive and functional interfaces through the combination of socket.io, JavaScript, CSS, HTML, vue, bulma, tailwind and Bootstrap."
-      ]
-    },
+    "intro": "Results-oriented backend professional with experience implementing services, integrations, and data processes for real business environments. My strength lies in connecting platforms, improving performance and ensuring stable operations, collaborating with technical and product teams to deliver sustainable solutions.",
     "backend": {
-      "title": "Backend Development:",
+      "title": "Backend & Integrations (Core):",
       "points": [
-        "Extensive experience in Node.js and express for creating robust and scalable servers.",
-        "Competence in designing and implementing microservices, enabling the construction of highly modular and flexible systems.",
-        "Deep knowledge of databases, including MongoDB, PostgreSQL and SQL, to efficiently manage application data."
+        "Design and implementation of REST APIs for integration between internal and external systems.",
+        "Modeling and optimization of SQL/NoSQL databases to improve response times and consistency.",
+        "Automation of synchronization flows and data processing between services.",
+        "Diagnosis and resolution of production incidents with a focus on stability and continuity."
       ]
     },
     "tools": {
-      "title": "Tools and Management:",
+      "title": "Application Infrastructure:",
       "points": [
-        "Efficient use of NPM and PM2 frameworks to manage dependencies and improve workflow efficiency.",
-        "Experience in Avaya systems administration, including Control Manager, Workspaces and Site Administrator, among others.",
-        "I have had the opportunity to work on a variety of projects, from creating simple RESTful APIs to developing highly interactive single-page applications."
+        "Deployment and operation of services in Linux environments using PM2 to ensure continuous availability.",
+        "Connectivity management and technical configuration to ensure stable communication between components.",
+        "Integration of third-party platforms via APIs, webhooks and data transformation processes.",
+        "Standardization of data contracts to reduce errors and improve long-term maintainability."
+      ]
+    },
+    "frontend": {
+      "title": "Frontend Development (Complementary):",
+      "points": [
+        "Implementation of functional interfaces with Vue.js and Nuxt.js to complete end-to-end flows.",
+        "Development of responsive components with Tailwind CSS and Bootstrap.",
+        "Frontend integration with own backend APIs to ensure data consistency."
       ]
     }
   },
   "experience": {
     "bercontCurrent": {
-      "position": "Full Stack Developer",
+      "position": "Backend Engineer — Area Lead",
       "company": "Bercont",
       "period": "May 2024 - Present",
-      "description": "Development for various clients, providing development support and solutions to specific needs."
+      "description": "Lead the backend development area, coordinating a 2-person team to deliver technical solutions for clients across multiple industries. Design and implement APIs, system integrations and data services, responding with agility to new business needs. Responsible for technical decisions, code review and project delivery in short cycles."
     },
     "bercont": {
-      "position": "Developer",
+      "position": "Backend Developer",
       "company": "Bercont",
       "period": "May 2022 - May 2024",
-      "description": "Development with node.js and MongoDB, to provide applications that allow facilitating solutions to clients."
+      "description": "Service development with Node.js and MongoDB for enterprise client needs. API implementation and data processes to automate and digitize operations."
     }
   },
   "projects": {
     "assistme": {
       "name": "ASSIST-ME Platform",
-      "role": "Full Stack Developer",
-      "description": "Complete platform for virtual receptionists and business answering services. Backend development with microservices architecture, RESTful APIs and real-time call management."
+      "role": "Backend Engineer",
+      "description": "Virtual receptionist platform for business answering services. Backend design and implementation with microservices architecture, RESTful APIs and real-time call management."
     }
   },
   "education": {
@@ -83,14 +85,23 @@
     }
   },
   "skills": {
-    "languages": "Languages and Frameworks",
-    "databases": "Databases",
-    "tools": "Tools and Styles",
-    "aptitudes": "Skills"
+    "softSkills": "Soft Skills",
+    "coreStack": "High-Impact Tech Stack",
+    "infraTools": "Infrastructure & DevOps"
+  },
+  "softSkills": {
+    "agileDelivery": "Agile delivery",
+    "agileDeliveryDesc": "I deliver functional solutions in short cycles, prioritizing real value.",
+    "technicalLeadership": "Technical leadership",
+    "technicalLeadershipDesc": "I guide small teams, define tasks and review deliverables.",
+    "solutionOriented": "Solution-oriented",
+    "solutionOrientedDesc": "When new business needs arise, I quickly propose and implement technical approaches.",
+    "inventiveThinking": "Inventive thinking",
+    "inventiveThinkingDesc": "I find practical solutions with available resources, even in unexplored territory."
   },
   "languages": {
     "english": "English",
-    "level": "7.5/10"
+    "level": "Advanced | Technical reading, writing and professional conversation"
   },
   "hobbies": {
     "music": "Music recording and production",
@@ -125,50 +136,51 @@
     "downloadPDF": "Download PDF ATS",
     "professionalSummary": {
       "title": "PROFESSIONAL SUMMARY",
-      "content": "Full-stack developer with more than 3 years of experience in Node.js, Express, MongoDB, PostgreSQL, Vue.js, Nuxt.js, React and microservices. Specialized in RESTful API development, scalable applications and performance optimization. Experience in Docker, Git, CI/CD, microservices architecture and agile methodologies."
+      "content": "Backend Engineer with 3+ years of experience in Node.js, NestJS, Express, PostgreSQL and MongoDB. Backend area lead, coordinating teams to deliver technical solutions in short cycles. Specialized in REST API design, systems integration, database optimization and application infrastructure on Linux environments with Docker and PM2. Solution-oriented, with the ability to respond quickly to new business needs."
     },
     "technicalSkills": {
       "title": "TECHNICAL SKILLS",
       "languages": "Languages:",
       "languagesList": "JavaScript, TypeScript, SQL",
-      "frameworks": "Frameworks and Libraries:",
-      "frameworksList": "Node.js, Express, Vue.js, Nuxt.js, React, Next.js, Sails.js",
+      "frameworks": "Backend (Core):",
+      "frameworksList": "Node.js, NestJS, Express, REST APIs, Microservices, Sails.js",
       "databases": "Databases:",
-      "databasesList": "PostgreSQL, MySQL, MongoDB, SQL",
-      "frontend": "Frontend:",
-      "frontendList": "HTML5, CSS3, Tailwind CSS, Bootstrap, Sass, Socket.io",
-      "devops": "DevOps and Tools:",
-      "devopsList": "Docker, PM2, Git, GitHub, CI/CD, NPM",
+      "databasesList": "PostgreSQL, MongoDB, MySQL",
+      "frontend": "Frontend (Complementary):",
+      "frontendList": "Vue.js, Nuxt.js, React, Tailwind CSS, Bootstrap, Socket.io",
+      "devops": "Infrastructure & DevOps:",
+      "devopsList": "Docker, PM2, Linux (Ubuntu, CentOS), Git, GitHub",
       "architecture": "Architecture:",
-      "architectureList": "Microservices, REST API, WebSockets, Software architecture",
+      "architectureList": "Microservices, REST API, WebSockets, Systems Integration",
       "os": "Operating Systems:",
       "osList": "Ubuntu, CentOS, Linux",
       "methodologies": "Methodologies:",
-      "methodologiesList": "Scrum, Agile, Agile development",
+      "methodologiesList": "Scrum, Agile, Iterative delivery",
       "testing": "Testing:",
-      "testingList": "Unit Testing, Software testing"
+      "testingList": "Unit Testing, Integration Testing"
     },
     "workExperience": {
       "title": "WORK EXPERIENCE",
       "bercontCurrent": {
-        "position": "Full Stack Developer",
+        "position": "Backend Engineer — Area Lead",
         "company": "Bercont",
         "period": "May 2024 - Present",
         "points": [
-          "Full-stack web application development for diverse clients, implementing RESTful APIs with Node.js and Express",
-          "Responsive interface development with Vue.js, Nuxt.js, React and Tailwind CSS",
-          "PostgreSQL and MongoDB database management and optimization",
-          "Technologies: Node.js, Express, Vue.js, Nuxt.js, React, PostgreSQL, MongoDB, Docker, Git"
+          "Lead the backend development area, coordinating a 2-person team to deliver technical solutions for clients across multiple industries",
+          "Design and implement REST APIs and integrations between internal and external systems using Node.js and NestJS",
+          "Model and optimize PostgreSQL and MongoDB databases to improve response times and data consistency",
+          "Deploy and operate services on Linux environments with Docker and PM2, ensuring continuous availability",
+          "Own technical decisions, code review and project delivery in short cycles, responding with agility to new business needs"
         ]
       },
       "bercontDeveloper": {
-        "position": "Developer Junior",
+        "position": "Backend Developer",
         "company": "Bercont",
-        "period": "13 May 2021 - 20 May 2022",
+        "period": "May 2022 - May 2024",
         "points": [
-          "Web application development with Node.js and MongoDB for enterprise clients",
-          "Microservices architecture and efficient API implementation",
-          "Collaboration in agile teams for quality product delivery",
+          "Backend service development with Node.js and MongoDB for enterprise clients",
+          "REST API and microservices architecture implementation to automate and digitize operations",
+          "Third-party platform integration via APIs and data transformation processes",
           "Technologies: Node.js, MongoDB, Express, JavaScript, Git, PM2"
         ]
       },
@@ -178,7 +190,7 @@
         "period": "29 Oct 2020 - 29 Apr 2021",
         "points": [
           "Software development support under senior engineer supervision",
-          "Participation in web projects and application of best practices",
+          "Participation in web projects and application of development best practices",
           "Technologies: Node.js, JavaScript, HTML, CSS, Git"
         ]
       }
@@ -190,10 +202,10 @@
     },
     "aptitudesAndLanguages": {
       "title": "SKILLS AND LANGUAGES",
-      "aptitudes": "Skills:",
-      "aptitudesList": "Communication, critical thinking, teamwork, attention to detail, continuous learning.",
+      "aptitudes": "Soft skills:",
+      "aptitudesList": "Agile delivery, technical leadership, solution-oriented, inventive thinking, attention to detail.",
       "languages": "Languages:",
-      "languagesList": "Spanish (Native), English (Intermediate - 7.5/10)"
+      "languagesList": "Spanish (Native), English (Advanced — technical reading, writing and professional conversation)"
     },
     "contact": {
       "location": "Bogotá, Colombia",
