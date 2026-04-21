@@ -17,7 +17,7 @@
               <div class="flex flex-col md:flex-row items-center md:items-center justify-center gap-8 md:gap-12 w-full">
                 <div 
                   class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-32 w-32 md:h-40 md:w-40 flex-shrink-0" 
-                  :style="{ backgroundImage: `url('${basePath}jared.jpeg')` }"
+                  :style="{ backgroundImage: `url('${profileImagePath}')` }"
                 ></div>
                 <div class="flex flex-col text-center md:text-left items-center md:items-start gap-4 w-full md:w-auto">
                   <div>
@@ -366,6 +366,7 @@ const basePath = computed(() => {
 })
 // Usar el modelo optimizado (3.1MB vs 27MB)
 const modelPath = computed(() => `${basePath.value}robot-optimized.glb`)
+const profileImagePath = computed(() => `${basePath.value}jared.jpeg?v=20260421`)
 
 
 // Función para extraer strings de objetos AST o arrays simples
