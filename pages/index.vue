@@ -14,13 +14,13 @@
     </Transition>
 
     <div class="relative flex h-auto min-h-screen w-full flex-col">
-      <!-- Parallax orbs — siguen el mouse a distintas velocidades -->
+      <!-- Parallax layers — mouse + scroll a distintas profundidades -->
       <div class="parallax-scene" aria-hidden="true">
-        <div class="p-orb p-orb-1" data-speed="0.04"></div>
-        <div class="p-orb p-orb-2" data-speed="0.07"></div>
-        <div class="p-orb p-orb-3" data-speed="0.02"></div>
-        <div class="p-orb p-orb-4" data-speed="0.09"></div>
-        <div class="p-orb p-orb-5" data-speed="0.05"></div>
+        <div class="p-orb p-orb-1" data-speed="0.04" data-scroll="0.12"></div>
+        <div class="p-orb p-orb-2" data-speed="0.07" data-scroll="0.22"></div>
+        <div class="p-orb p-orb-3" data-speed="0.02" data-scroll="0.08"></div>
+        <div class="p-orb p-orb-4" data-speed="0.09" data-scroll="0.30"></div>
+        <div class="p-orb p-orb-5" data-speed="0.05" data-scroll="0.16"></div>
       </div>
 
       <div class="layout-container flex h-full grow flex-col">
@@ -589,23 +589,40 @@ onMounted(async () => {
   }
   setupTilt()
 
-  // ── Parallax orbs — mouse tracking con lerp ──────────────────────────────
+  // ── Parallax layers — scroll + mouse con lerp ────────────────────────────
+  // Cada orb tiene:
+  //   data-speed  → qué tan rápido sigue el mouse (0.02 – 0.09)
+  //   data-scroll → qué tan lento sube con el scroll (0 = normal, 0.5 = mitad de vel.)
   const orbs = Array.from(document.querySelectorAll('.p-orb'))
   const orbStates = orbs.map(orb => ({
     el: orb,
-    speed: parseFloat(orb.dataset.speed || 0.05),
-    cx: 0, cy: 0,   // current (lerped)
-    tx: 0, ty: 0,   // target
+    mouseSpeed:  parseFloat(orb.dataset.speed  || 0.05),
+    scrollDepth: parseFloat(orb.dataset.scroll || 0.3),
+    // estado actual (lerpeado) y objetivo
+    cx: 0, cy: 0,
+    tx: 0, ty: 0,
   }))
 
-  let mouseX = 0, mouseY = 0
-  const onMouseMove = (e) => {
-    mouseX = (e.clientX / window.innerWidth  - 0.5) * 2
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 2
+  let scrollY = 0
+  // Scroll: los orbs se mueven a distinta velocidad → capas más "lejanas" avanzan menos
+  const onScroll = () => {
+    scrollY = window.scrollY
     orbStates.forEach(o => {
-      const dist = Math.min(window.innerWidth, window.innerHeight) * 0.5
-      o.tx = mouseX * dist * o.speed
-      o.ty = mouseY * dist * o.speed
+      // El offset vertical viene del scroll × (1 - depth): cuanto menor depth, más lento
+      o.ty = -scrollY * o.scrollDepth + (o.ty - (-window.scrollY * o.scrollDepth))
+    })
+  }
+  window.addEventListener('scroll', onScroll, { passive: true })
+
+  // Mouse: desplazamiento lateral/vertical proporcional a la velocidad del orb
+  const onMouseMove = (e) => {
+    const mx = (e.clientX / window.innerWidth  - 0.5) * 2
+    const my = (e.clientY / window.innerHeight - 0.5) * 2
+    const dist = Math.min(window.innerWidth, window.innerHeight) * 0.45
+    orbStates.forEach(o => {
+      o.tx = mx * dist * o.mouseSpeed
+      // El componente Y del mouse se suma al de scroll
+      o.ty = -scrollY * o.scrollDepth + my * dist * o.mouseSpeed
     })
   }
   window.addEventListener('mousemove', onMouseMove, { passive: true })
@@ -614,17 +631,17 @@ onMounted(async () => {
   const lerp = (a, b, t) => a + (b - a) * t
   const animateOrbs = () => {
     orbStates.forEach(o => {
-      o.cx = lerp(o.cx, o.tx, 0.06)
-      o.cy = lerp(o.cy, o.ty, 0.06)
+      o.cx = lerp(o.cx, o.tx, 0.055)
+      o.cy = lerp(o.cy, o.ty, 0.055)
       o.el.style.transform = `translate(calc(-50% + ${o.cx}px), calc(-50% + ${o.cy}px))`
     })
     rafId = requestAnimationFrame(animateOrbs)
   }
   animateOrbs()
 
-  // Guardar cleanup en variables de módulo
   window.__parallaxCleanup = () => {
     window.removeEventListener('mousemove', onMouseMove)
+    window.removeEventListener('scroll', onScroll)
     cancelAnimationFrame(rafId)
   }
 })
