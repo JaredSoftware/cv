@@ -14,8 +14,14 @@
     </Transition>
 
     <div class="relative flex h-auto min-h-screen w-full flex-col">
-      <!-- Aurora background — visible siempre, anima en el hero -->
-      <div class="aurora-bg" aria-hidden="true"></div>
+      <!-- Parallax orbs — siguen el mouse a distintas velocidades -->
+      <div class="parallax-scene" aria-hidden="true">
+        <div class="p-orb p-orb-1" data-speed="0.04"></div>
+        <div class="p-orb p-orb-2" data-speed="0.07"></div>
+        <div class="p-orb p-orb-3" data-speed="0.02"></div>
+        <div class="p-orb p-orb-4" data-speed="0.09"></div>
+        <div class="p-orb p-orb-5" data-speed="0.05"></div>
+      </div>
 
       <div class="layout-container flex h-full grow flex-col">
         <main class="flex-1 py-12 md:py-20">
@@ -430,6 +436,9 @@ const modelMounted = ref(false)
 // ── Foto de perfil ─────────────────────────────────────────────────────────────
 const profileImageLoaded = ref(false)
 
+// ── Parallax ───────────────────────────────────────────────────────────────────
+const heroRef = ref(null)
+
 // ── Toast ──────────────────────────────────────────────────────────────────────
 const toast = ref({ visible: false, message: '', type: 'success' })
 let toastTimer = null
@@ -579,12 +588,53 @@ onMounted(async () => {
     })
   }
   setupTilt()
+
+  // ── Parallax orbs — mouse tracking con lerp ──────────────────────────────
+  const orbs = Array.from(document.querySelectorAll('.p-orb'))
+  const orbStates = orbs.map(orb => ({
+    el: orb,
+    speed: parseFloat(orb.dataset.speed || 0.05),
+    cx: 0, cy: 0,   // current (lerped)
+    tx: 0, ty: 0,   // target
+  }))
+
+  let mouseX = 0, mouseY = 0
+  const onMouseMove = (e) => {
+    mouseX = (e.clientX / window.innerWidth  - 0.5) * 2
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2
+    orbStates.forEach(o => {
+      const dist = Math.min(window.innerWidth, window.innerHeight) * 0.5
+      o.tx = mouseX * dist * o.speed
+      o.ty = mouseY * dist * o.speed
+    })
+  }
+  window.addEventListener('mousemove', onMouseMove, { passive: true })
+
+  let rafId
+  const lerp = (a, b, t) => a + (b - a) * t
+  const animateOrbs = () => {
+    orbStates.forEach(o => {
+      o.cx = lerp(o.cx, o.tx, 0.06)
+      o.cy = lerp(o.cy, o.ty, 0.06)
+      o.el.style.transform = `translate(calc(-50% + ${o.cx}px), calc(-50% + ${o.cy}px))`
+    })
+    rafId = requestAnimationFrame(animateOrbs)
+  }
+  animateOrbs()
+
+  // Guardar cleanup en variables de módulo
+  window.__parallaxCleanup = () => {
+    window.removeEventListener('mousemove', onMouseMove)
+    cancelAnimationFrame(rafId)
+  }
 })
 
 onUnmounted(() => {
   revealObserver?.disconnect()
   langObserver?.disconnect()
   clearTimeout(toastTimer)
+  window.__parallaxCleanup?.()
+  delete window.__parallaxCleanup
 })
 </script>
 
@@ -594,30 +644,68 @@ onUnmounted(() => {
 }
 
 /* ══════════════════════════════════════════════
-   AURORA BACKGROUND
+   PARALLAX SCENE — orbs que siguen el mouse
 ══════════════════════════════════════════════ */
-.aurora-bg {
+.parallax-scene {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(59,130,246,0.10) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 90% 10%, rgba(139,92,246,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 60% 90%, rgba(6,182,212,0.07) 0%, transparent 70%);
-  animation: aurora-drift 12s ease-in-out infinite alternate;
+  overflow: hidden;
 }
-.dark .aurora-bg {
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(59,130,246,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 90% 10%, rgba(139,92,246,0.14) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 60% 90%, rgba(6,182,212,0.10) 0%, transparent 70%);
+
+.p-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+  opacity: 0;
+  animation: orb-appear 1.2s ease forwards;
 }
-@keyframes aurora-drift {
-  0%   { opacity: 0.7; transform: scale(1)   translateY(0px); }
-  50%  { opacity: 1;   transform: scale(1.05) translateY(-10px); }
-  100% { opacity: 0.8; transform: scale(0.98) translateY(8px); }
+
+/* Posiciones base (left/top en %) */
+.p-orb-1 {
+  width: 55vw; height: 55vw;
+  left: 5%; top: -10%;
+  background: radial-gradient(circle, rgba(59,130,246,0.22) 0%, transparent 70%);
+  animation-delay: 0s;
 }
+.p-orb-2 {
+  width: 45vw; height: 45vw;
+  left: 65%; top: 10%;
+  background: radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%);
+  animation-delay: 0.2s;
+}
+.p-orb-3 {
+  width: 40vw; height: 40vw;
+  left: 30%; top: 55%;
+  background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%);
+  animation-delay: 0.4s;
+}
+.p-orb-4 {
+  width: 35vw; height: 35vw;
+  left: 80%; top: 60%;
+  background: radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%);
+  animation-delay: 0.6s;
+}
+.p-orb-5 {
+  width: 30vw; height: 30vw;
+  left: -5%; top: 70%;
+  background: radial-gradient(circle, rgba(245,158,11,0.10) 0%, transparent 70%);
+  animation-delay: 0.8s;
+}
+
+.dark .p-orb-1 { background: radial-gradient(circle, rgba(59,130,246,0.30) 0%, transparent 70%); }
+.dark .p-orb-2 { background: radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%); }
+.dark .p-orb-3 { background: radial-gradient(circle, rgba(6,182,212,0.22) 0%, transparent 70%); }
+.dark .p-orb-4 { background: radial-gradient(circle, rgba(16,185,129,0.18) 0%, transparent 70%); }
+.dark .p-orb-5 { background: radial-gradient(circle, rgba(245,158,11,0.14) 0%, transparent 70%); }
+
+@keyframes orb-appear {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
 
 /* ══════════════════════════════════════════════
    AVATAR — ANILLO GIRATORIO
@@ -769,7 +857,7 @@ onUnmounted(() => {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ══════════════════════════════════════════════
-   z-index — contenido sobre aurora
+   z-index — contenido sobre el parallax scene
 ══════════════════════════════════════════════ */
 .layout-container { position: relative; z-index: 1; }
 </style>
