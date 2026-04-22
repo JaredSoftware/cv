@@ -1,0 +1,1 @@
+const t=globalThis.requestIdleCallback||(e=>{const a=Date.now(),l={didTimeout:!1,timeRemaining:()=>Math.max(0,50-(Date.now()-a))};return setTimeout(()=>{e(l)},1)}),c=globalThis.cancelIdleCallback||(e=>{clearTimeout(e)});export{c,t as r};
