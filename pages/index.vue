@@ -502,7 +502,9 @@ onMounted(async () => {
   if (!process.client) return
   await nextTick()
 
-  // Scroll reveal con IntersectionObserver (sin bloquear el hilo)
+  // Scroll reveal — doble estrategia para garantizar que funcione en producción:
+  // 1. Check inmediato con getBoundingClientRect para los ya visibles en viewport
+  // 2. IntersectionObserver para los que entran al hacer scroll
   revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -510,9 +512,22 @@ onMounted(async () => {
         revealObserver.unobserve(entry.target)
       }
     })
-  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' })
+  }, { threshold: 0, rootMargin: '0px' })
 
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el))
+  // requestAnimationFrame: esperar a que el browser haya hecho el layout
+  // antes de medir posiciones con getBoundingClientRect
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect()
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        // Ya está en pantalla — hacer visible de inmediato
+        el.classList.add('is-visible')
+      } else {
+        // Fuera de pantalla — observar para cuando haga scroll
+        revealObserver.observe(el)
+      }
+    })
+  })
 
   // Language bar animada al hacer scroll
   langObserver = new IntersectionObserver((entries) => {
