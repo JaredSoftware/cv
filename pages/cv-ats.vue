@@ -26,11 +26,26 @@
         <div class="cv-sidebar-section">
           <h3 class="cv-sidebar-title">{{ $t('sections.contactInfo') }}</h3>
           <ul class="cv-contact-list">
-            <li><span class="cv-icon">&#9993;</span> jaredwesley27@hotmail.com</li>
-            <li><span class="cv-icon">&#9990;</span> +57 322 926 6046</li>
-            <li><span class="cv-icon">&#9679;</span> {{ $t('cvAts.contact.location') }}</li>
-            <li><span class="cv-icon">&#9679;</span> github.com/JaredSoftware</li>
-            <li><span class="cv-icon">&#9679;</span> linkedin.com/in/jared-wesley-vargas-cortes-0ab9a71a8</li>
+            <li>
+              <span class="cv-icon">&#9993;</span>
+              <a href="mailto:jaredwesley27@hotmail.com" class="cv-link">jaredwesley27@hotmail.com</a>
+            </li>
+            <li>
+              <span class="cv-icon">&#9990;</span>
+              <a href="tel:+573229266046" class="cv-link">+57 322 926 6046</a>
+            </li>
+            <li>
+              <span class="cv-icon">&#9679;</span>
+              {{ $t('cvAts.contact.location') }}
+            </li>
+            <li>
+              <span class="cv-icon">&#9679;</span>
+              <a href="https://github.com/JaredSoftware" target="_blank" rel="noopener" class="cv-link">github.com/JaredSoftware</a>
+            </li>
+            <li>
+              <span class="cv-icon">&#9679;</span>
+              <a href="https://linkedin.com/in/jared-wesley-vargas-cortes-0ab9a71a8" target="_blank" rel="noopener" class="cv-link cv-link-break">linkedin.com/in/jared-vargas</a>
+            </li>
           </ul>
         </div>
 
@@ -352,6 +367,22 @@ const downloadPDF = () => {
 .cv-icon {
   margin-right: 4px;
   color: #60a5fa;
+}
+
+.cv-link {
+  color: #93c5fd;
+  text-decoration: none;
+  word-break: break-all;
+}
+.cv-link:hover {
+  text-decoration: underline;
+  color: #bfdbfe;
+}
+@media print {
+  .cv-link {
+    color: #93c5fd !important;
+    text-decoration: none !important;
+  }
 }
 
 .cv-skill-row {
