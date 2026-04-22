@@ -14,21 +14,22 @@
     </Transition>
 
     <div class="relative flex h-auto min-h-screen w-full flex-col">
+      <!-- Aurora background — visible siempre, anima en el hero -->
+      <div class="aurora-bg" aria-hidden="true"></div>
+
       <div class="layout-container flex h-full grow flex-col">
         <main class="flex-1 py-12 md:py-20">
           <div class="mx-auto flex max-w-6xl flex-col gap-12 px-4">
 
-            <header class="flex flex-col items-center gap-8 md:gap-12">
+            <header class="flex flex-col items-center gap-8 md:gap-12 relative">
 
-              <!-- Canvas 3D — posición original, arriba -->
-              <!-- Skeleton ocupa el espacio INMEDIATAMENTE, sin layout shift -->
-              <!-- Three.js se inicializa solo cuando el browser está idle (requestIdleCallback) -->
+              <!-- Canvas 3D -->
               <div class="w-full max-w-md">
                 <Transition name="model-fade">
                   <div
                     v-if="!modelMounted"
                     key="skeleton"
-                    class="w-full h-64 md:h-80 rounded-lg skeleton-shimmer"
+                    class="w-full h-64 md:h-80 rounded-2xl skeleton-shimmer"
                   ></div>
                   <Model3D
                     v-else
@@ -41,39 +42,44 @@
                 </Transition>
               </div>
 
-              <!-- Foto + texto — animación CSS pura, sin esperar JS -->
+              <!-- Foto + texto -->
               <div class="flex flex-col md:flex-row items-center md:items-center justify-center gap-8 md:gap-12 w-full">
 
-                <!-- Foto: skeleton shimmer mientras llega, luego fade-in -->
-                <div class="relative h-32 w-32 md:h-40 md:w-40 flex-shrink-0 hero-avatar">
-                  <!-- Skeleton: visible hasta que la imagen esté lista -->
+                <!-- Avatar con anillo giratorio -->
+                <div class="relative flex-shrink-0 hero-avatar">
+                  <!-- Anillo de gradiente giratorio -->
+                  <div class="avatar-ring-outer">
+                    <div class="avatar-ring-inner"></div>
+                  </div>
+                  <!-- Skeleton -->
                   <div
                     v-show="!profileImageLoaded"
-                    class="absolute inset-0 rounded-full skeleton-shimmer"
+                    class="absolute inset-[4px] rounded-full skeleton-shimmer z-10"
                   ></div>
-                  <!-- Imagen: background-image (igual que el original, funciona) -->
+                  <!-- Imagen -->
                   <div
-                    class="h-full w-full rounded-full bg-center bg-no-repeat bg-cover ring-4 ring-blue-500/30 shadow-lg transition-opacity duration-500"
+                    class="relative z-10 h-32 w-32 md:h-40 md:w-40 rounded-full bg-center bg-no-repeat bg-cover transition-opacity duration-500"
                     :class="profileImageLoaded ? 'opacity-100' : 'opacity-0'"
                     :style="{ backgroundImage: `url('${profileImagePath}')` }"
                   ></div>
                 </div>
 
-                <!-- Texto: DOM puro, aparece en el primer frame -->
+                <!-- Texto -->
                 <div class="flex flex-col text-center md:text-left items-center md:items-start gap-4 w-full md:w-auto hero-info">
                   <div>
                     <h1 class="text-text-primary-light dark:text-white text-4xl md:text-5xl font-extrabold tracking-tighter">
                       {{ $t('name') }}
                     </h1>
-                    <p class="text-primary dark:text-blue-400 text-lg md:text-xl font-medium mt-1">
-                      {{ $t('title') }}
+                    <!-- Typewriter en el título -->
+                    <p class="text-primary dark:text-blue-400 text-lg md:text-xl font-medium mt-1 typewriter-wrap">
+                      <span class="typewriter">{{ $t('title') }}</span>
                     </p>
                   </div>
                   <p class="text-text-secondary-light dark:text-text-secondary-dark max-w-xl text-base md:text-lg">
                     {{ $t('description') }}
                   </p>
                   <button
-                    class="group relative flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-blue-500 text-white text-base font-bold leading-normal tracking-wide hover:bg-blue-600 transition-all duration-300 ease-in-out active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
+                    class="group relative flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-11 px-6 btn-glow text-white text-base font-bold leading-normal tracking-wide transition-all duration-300 ease-in-out active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
                     :disabled="isDownloading"
                     @click="downloadCV"
                   >
@@ -93,7 +99,7 @@
               <div class="lg:col-span-2 flex flex-col gap-10">
 
                 <!-- Professional Summary -->
-                <section class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-6 md:p-8 reveal">
+                <section class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-6 md:p-8 reveal tilt-card glass-card">
                   <h2 class="text-text-primary-light dark:text-white text-2xl font-bold tracking-tight mb-4 flex items-center gap-3">
                     <span class="material-symbols-outlined text-primary dark:text-blue-400 !text-3xl">person</span>
                     {{ $t('sections.professionalProfile') }}
@@ -241,7 +247,7 @@
               <div class="lg:col-span-1 flex flex-col gap-10">
 
                 <!-- Contact -->
-                <section class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-6 reveal">
+                <section class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-6 reveal tilt-card glass-card">
                   <h3 class="text-lg font-bold text-text-primary-light dark:text-white mb-4">{{ $t('sections.contactInfo') }}</h3>
                   <ul class="space-y-4 text-sm">
                     <li class="flex items-center gap-3 group/item">
@@ -346,7 +352,7 @@
                 </section>
 
                 <!-- Languages -->
-                <section class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-6 reveal">
+                <section class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-6 reveal tilt-card glass-card">
                   <h3 class="text-lg font-bold text-text-primary-light dark:text-white mb-4">{{ $t('sections.languages') }}</h3>
                   <div class="space-y-4">
                     <div>
@@ -366,7 +372,7 @@
                 </section>
 
                 <!-- Hobbies -->
-                <section class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-6 reveal">
+                <section class="bg-card-light dark:bg-card-dark rounded-xl shadow-soft p-6 reveal tilt-card glass-card">
                   <h3 class="text-lg font-bold text-text-primary-light dark:text-white mb-4">{{ $t('sections.hobbies') }}</h3>
                   <div class="flex flex-wrap gap-2">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500 text-white text-sm font-medium">
@@ -553,9 +559,26 @@ onMounted(async () => {
   if ('requestIdleCallback' in window) {
     requestIdleCallback(mountModel, { timeout: 2500 })
   } else {
-    // Safari fallback
     setTimeout(mountModel, 600)
   }
+
+  // Card tilt 3D — seguimiento del mouse con perspective
+  const setupTilt = () => {
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect()
+        const x = (e.clientX - rect.left) / rect.width - 0.5
+        const y = (e.clientY - rect.top) / rect.height - 0.5
+        card.style.transform = `perspective(700px) rotateX(${y * -6}deg) rotateY(${x * 6}deg) scale3d(1.015,1.015,1.015)`
+        card.style.transition = 'transform 0.1s ease'
+      })
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = ''
+        card.style.transition = 'transform 0.4s ease'
+      })
+    })
+  }
+  setupTilt()
 })
 
 onUnmounted(() => {
@@ -567,14 +590,123 @@ onUnmounted(() => {
 
 <style>
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-/* ── Skeleton shimmer — visible desde frame 0, sin JS ── */
+/* ══════════════════════════════════════════════
+   AURORA BACKGROUND
+══════════════════════════════════════════════ */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(59,130,246,0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 90% 10%, rgba(139,92,246,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 60% 90%, rgba(6,182,212,0.07) 0%, transparent 70%);
+  animation: aurora-drift 12s ease-in-out infinite alternate;
+}
+.dark .aurora-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(59,130,246,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 90% 10%, rgba(139,92,246,0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 60% 90%, rgba(6,182,212,0.10) 0%, transparent 70%);
+}
+@keyframes aurora-drift {
+  0%   { opacity: 0.7; transform: scale(1)   translateY(0px); }
+  50%  { opacity: 1;   transform: scale(1.05) translateY(-10px); }
+  100% { opacity: 0.8; transform: scale(0.98) translateY(8px); }
+}
+
+/* ══════════════════════════════════════════════
+   AVATAR — ANILLO GIRATORIO
+══════════════════════════════════════════════ */
+.avatar-ring-outer {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(#3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+  animation: ring-spin 3s linear infinite;
+  z-index: 0;
+}
+.avatar-ring-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--background-light);
+}
+.dark .avatar-ring-inner { background: var(--background-dark); }
+@keyframes ring-spin { to { transform: rotate(360deg); } }
+
+.hero-avatar {
+  position: relative;
+  display: inline-flex;
+  animation: hero-up 0.45s ease both;
+}
+.hero-info {
+  animation: hero-up 0.45s ease 0.07s both;
+}
+@keyframes hero-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════════
+   TYPEWRITER
+══════════════════════════════════════════════ */
+.typewriter-wrap { overflow: hidden; }
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid currentColor;
+  animation:
+    typing 1.8s steps(30, end) 0.3s both,
+    blink  0.75s step-end infinite;
+  max-width: 100%;
+}
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink  { 50% { border-color: transparent; } }
+
+/* ══════════════════════════════════════════════
+   BOTÓN CON GLOW
+══════════════════════════════════════════════ */
+.btn-glow {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  box-shadow: 0 0 0 0 rgba(99,102,241,0.4);
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+}
+.btn-glow:hover:not(:disabled) {
+  box-shadow: 0 0 20px 6px rgba(99,102,241,0.35), 0 4px 16px rgba(59,130,246,0.3);
+  transform: translateY(-1px);
+}
+
+/* ══════════════════════════════════════════════
+   GLASSMORPHISM CARDS
+══════════════════════════════════════════════ */
+.glass-card {
+  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.glass-card:hover {
+  box-shadow: 0 8px 32px rgba(59,130,246,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  border-color: rgba(59,130,246,0.3);
+}
+.dark .glass-card {
+  border-color: rgba(255,255,255,0.07);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+.dark .glass-card:hover {
+  box-shadow: 0 8px 32px rgba(59,130,246,0.2), 0 2px 8px rgba(0,0,0,0.4);
+  border-color: rgba(59,130,246,0.4);
+}
+
+/* ══════════════════════════════════════════════
+   SKELETON SHIMMER
+══════════════════════════════════════════════ */
 .skeleton-shimmer {
   background: linear-gradient(90deg, var(--border-light) 25%, #e0e7ef 50%, var(--border-light) 75%);
   background-size: 200% 100%;
@@ -589,45 +721,41 @@ onUnmounted(() => {
   100% { background-position: -200% 0; }
 }
 
-/* ── Hero — entradas escalonadas con CSS puro (0 JS, 0 bloqueo) ── */
-.hero-avatar {
-  animation: hero-up 0.45s ease both;
-}
-.hero-info {
-  animation: hero-up 0.45s ease 0.07s both;
-}
-@keyframes hero-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Fade del canvas cuando aparece el modelo ── */
-.model-fade-enter-active { transition: opacity 0.5s ease; }
+/* ══════════════════════════════════════════════
+   FADE DEL CANVAS 3D
+══════════════════════════════════════════════ */
+.model-fade-enter-active { transition: opacity 0.6s ease; }
 .model-fade-enter-from   { opacity: 0; }
 
-/* ── Scroll Reveal ── */
+/* ══════════════════════════════════════════════
+   SCROLL REVEAL — escala + fade (más impacto)
+══════════════════════════════════════════════ */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(32px) scale(0.98);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
   will-change: opacity, transform;
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   will-change: auto;
 }
 
-/* ── Toast ── */
+/* ══════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════ */
 .toast-enter-active, .toast-leave-active {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .toast-enter-from, .toast-leave-to {
   opacity: 0;
-  transform: translateY(-12px) scale(0.96);
+  transform: translateY(-12px) scale(0.95);
 }
 
-/* ── Button spinner ── */
+/* ══════════════════════════════════════════════
+   BUTTON SPINNER
+══════════════════════════════════════════════ */
 .btn-spinner {
   display: inline-block;
   width: 16px;
@@ -639,4 +767,9 @@ onUnmounted(() => {
   flex-shrink: 0;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ══════════════════════════════════════════════
+   z-index — contenido sobre aurora
+══════════════════════════════════════════════ */
+.layout-container { position: relative; z-index: 1; }
 </style>
