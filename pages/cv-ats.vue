@@ -181,10 +181,9 @@
 </template>
 
 <script setup>
-import { computed, nextTick } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const { generatePDF } = usePDFGenerator()
 const { t, tm, messages, locale } = useI18n()
 const router = useRouter()
 
@@ -257,53 +256,19 @@ const backendPoints = computed(() => getTranslationArray('profile.backend.points
 const toolsPoints = computed(() => getTranslationArray('profile.tools.points'))
 const frontendPoints = computed(() => getTranslationArray('profile.frontend.points'))
 
-const downloadPDF = async () => {
-  if (!process.client) {
-    console.warn('PDF generation only available in browser')
-    return
+const downloadPDF = () => {
+  if (!process.client) return
+
+  const button = document.getElementById('pdf-button')
+  if (button) button.style.display = 'none'
+
+  const restoreButton = () => {
+    if (button) button.style.display = ''
+    window.removeEventListener('afterprint', restoreButton)
   }
-  
-  try {
-    // Verificar que el composable esté disponible
-    if (!generatePDF) {
-      throw new Error('PDF generator not available')
-    }
-    
-    // Esperar a que Vue termine de renderizar todas las traducciones
-    await nextTick()
-    
-    // Dar tiempo adicional para que el DOM se actualice completamente
-    // Esto asegura que las traducciones estén visibles antes de capturar
-    await new Promise(resolve => setTimeout(resolve, 200))
-    
-    // Verificar que el contenido está renderizado correctamente
-    const element = document.getElementById('cv-ats')
-    if (!element) {
-      throw new Error('Elemento cv-ats no encontrado')
-    }
-    
-    // Verificar que el contenido tiene texto
-    const textContent = element.textContent || element.innerText
-    if (!textContent || textContent.trim().length === 0) {
-      console.warn('El contenido parece estar vacío, esperando más tiempo...')
-      await new Promise(resolve => setTimeout(resolve, 500))
-    }
-    
-    // Forzar un re-render asegurando que todas las traducciones estén cargadas
-    await nextTick()
-    
-    const fileName = locale.value === 'es' 
-      ? 'CV_Jared_Wesley_Vargas_Cortes_ATS.pdf'
-      : 'CV_Jared_Wesley_Vargas_Cortes_ATS_English.pdf'
-    
-    await generatePDF('cv-ats', fileName)
-  } catch (error) {
-    console.error('Error al generar PDF:', error)
-    const errorMessage = locale.value === 'es'
-      ? `Error al generar el PDF: ${error.message}. Por favor, intenta usar la función de imprimir del navegador (Ctrl+P o Cmd+P).`
-      : `Error generating PDF: ${error.message}. Please try using the browser print function (Ctrl+P or Cmd+P).`
-    alert(errorMessage)
-  }
+  window.addEventListener('afterprint', restoreButton)
+
+  window.print()
 }
 </script>
 
@@ -522,9 +487,26 @@ const downloadPDF = async () => {
 
 /* ── Print / PDF ── */
 @media print {
-  body { margin: 0; padding: 0; background: white; }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
   #pdf-button { display: none !important; }
-  .cv-wrapper { box-shadow: none; }
+  .cv-wrapper {
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
 }
 
 @media screen {
